@@ -33,6 +33,28 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
         $this->assertContains($this->userB, $this->session->getPresenters());
     }
 
+    /**
+     * @expectedException SplitOut\Model\SessionException
+     */
+    public function testUsingEmptyTitleThrowsException() {
+
+        $user = $this->getMockBuilder('SplitOut\Model\Presenter')
+                     ->getMock();
+
+        $session = new Session('', $user);
+    }
+
+    /**
+     * @expectedException SplitOut\Model\SessionException
+     */
+    public function testUsingNonStringTitleThrowsException() {
+
+        $user = $this->getMockBuilder('SplitOut\Model\Presenter')
+                     ->getMock();
+
+        $session = new Session(array(), $user);
+    }
+
     protected function setUpSessionWithTwoPresenters()
     {
         $this->userA = $this->getMockBuilder('SplitOut\Model\Presenter')
