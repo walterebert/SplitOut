@@ -5,6 +5,7 @@ namespace SplitOut\Model;
 class Session {
 
    protected $presenters;
+   protected $comments = array();
    
    public function __construct() {
       $this->presenters = new \SplObjectStorage();
@@ -20,6 +21,14 @@ class Session {
 
    public function removePresenter(User $presenter) {
       $this->presenters->detach($presenter);
+   }
+   
+   public function addComment(Comment $comment) {
+      $this->comments[] = $comment;
+   }
+   
+   public function getComments() {
+      return $this->comments;
    }
 }
 
