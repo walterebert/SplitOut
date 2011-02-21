@@ -7,7 +7,7 @@ use SplitOut\Model\Event;
 use SplitOut\Model\Session;
 use SplitOut\Model\Comment;
 
-require __DIR__ . '/autoload.php';
+require __DIR__ . '/../src/autoload.php';
 
 $arne = new User('Arne');
 $stefan = new User('Stefan');
