@@ -13,18 +13,19 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
       $session->addPresenter($userB);
       
       $this->assertContains($userA, $session->getPresenters());
-      $this->assertContains($userB, $session->getPresenters());
-      
-      return array($session, $userA, $userB);
+      $this->assertContains($userB, $session->getPresenters());     
    }
    
    /**
-    *  THIS IS UGLY LIKE HELL!
-    *
     * @depends testAddingPresentersToASessionWorks
     */
-   public function testRemovingPresenterFromASessionWorks(array $bullshit) {
-      list($session, $userA, $userB) = $bullshit;
+   public function testRemovingPresenterFromASessionWorks() {
+      $session = new Session();
+      $userA = new User();
+      $userB = new User();
+      
+      $session->addPresenter($userA);
+      $session->addPresenter($userB);
    
       $session->removePresenter($userA);
       
