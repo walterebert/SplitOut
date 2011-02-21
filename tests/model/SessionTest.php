@@ -28,10 +28,9 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
         $this->setUpSessionWithTwoPresenters();
 
         $this->session->removePresenter($this->userA);
-        $this->session->removePresenter($this->userB);
 
         $this->assertNotContains($this->userA, $this->session->getPresenters());
-        $this->assertNotContains($this->userB, $this->session->getPresenters());
+        $this->assertContains($this->userB, $this->session->getPresenters());
     }
 
     protected function setUpSessionWithTwoPresenters()
