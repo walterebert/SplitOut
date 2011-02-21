@@ -4,10 +4,14 @@ namespace SplitOut\Model;
 
 class Session {
 
-   protected $presenters = array();
+   protected $presenters;
+   
+   public function __construct() {
+      $this->presenters = new \SplObjectStorage();
+   }
    
    public function addPresenter(User $presenter) {
-      $this->presenters[] = $presenter;
+      $this->presenters->attach($presenter);
    }
    
    public function getPresenters() {
@@ -15,12 +19,7 @@ class Session {
    }
 
    public function removePresenter(User $presenter) {
-      foreach(array_keys($this->presenters) as $key) {
-         if ($this->presenters[$key] === $presenter) {
-            unset($this->presenters[$key]);
-            break;
-         }
-      }
+      $this->presenters->detach($presenter);
    }
 }
 
