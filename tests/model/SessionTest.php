@@ -38,7 +38,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
         $this->userA = $this->getMockBuilder('SplitOut\Model\Presenter')
                             ->getMock();
 
-        $this->userB = $this->getMockBuilder('SplitOut\Model\Presenter')
+        $this->userB = $this->getMockBuilder('SplitOut\Model\User')
+                            ->disableOriginalConstructor()
                             ->getMock();
 
         $this->session = new Session('test', $this->userA);
