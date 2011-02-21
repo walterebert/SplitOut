@@ -4,14 +4,20 @@ namespace SplitOut\Model;
 
 class Session {
 
+   protected $title;
    protected $presenters;
    protected $comments = array();
    
-   public function __construct() {
+   public function __construct($title, AbstractUser $presenter) {
+      if (!is_string($title) || $title=='') {
+         throw new SessionException('Title must be a string and not empty');
+      }
+      $this->title = $title;
       $this->presenters = new \SplObjectStorage();
+      $this->addPresenter($presenter);
    }
    
-   public function addPresenter(User $presenter) {
+   public function addPresenter(AbstractUser $presenter) {
       $this->presenters->attach($presenter);
    }
    
@@ -19,7 +25,7 @@ class Session {
       return $this->presenters;
    }
 
-   public function removePresenter(User $presenter) {
+   public function removePresenter(AbstractUser $presenter) {
       $this->presenters->detach($presenter);
    }
    
@@ -32,3 +38,4 @@ class Session {
    }
 }
 
+class SessionException extends \Exception {}

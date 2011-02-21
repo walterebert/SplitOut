@@ -3,6 +3,7 @@
 namespace SplitOut;
 
 use SplitOut\Model\User;
+use SplitOut\Model\ToBeAnnouncedUser;
 use SplitOut\Model\Event;
 use SplitOut\Model\Session;
 use SplitOut\Model\Comment;
@@ -15,7 +16,10 @@ $sebastian = new User('Sebastian');
 
 $phpUnconf = new Event('PHP Unconf EU');
 
-$phpDays = new Session('PHP Days');
+$phpDays = new Session('PHP Days', new ToBeAnnouncedUser());
+$phpDays->addPresenter($arne);
+$phpDays->addPresenter($stefan);
+$phpDays->addPresenter($sebastian);
 
 $phpUnconf->addSession($phpDays);
 

@@ -2,18 +2,11 @@
 
 namespace SplitOut\Model;
 
-class User {
+class User extends AbstractUser {
 
-    protected $name;
-
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
+   public function __construct($name) {
+      $this->name = $name;
+   }
     
-    public function getName()
-    {
-        return $this->name;
-    }
 }
 
