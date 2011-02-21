@@ -35,17 +35,13 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
 
     protected function setUpSessionWithTwoPresenters()
     {
-        $this->userA = $this->getMockBuilder('SplitOut\Model\User')
-                            ->disableOriginalConstructor()
+        $this->userA = $this->getMockBuilder('SplitOut\Model\Presenter')
                             ->getMock();
 
-        $this->userB = $this->getMockBuilder('SplitOut\Model\User')
-                            ->disableOriginalConstructor()
+        $this->userB = $this->getMockBuilder('SplitOut\Model\Presenter')
                             ->getMock();
 
-        $this->session = new Session;
-
-        $this->session->addPresenter($this->userA);
+        $this->session = new Session('test', $this->userA);
         $this->session->addPresenter($this->userB);
     }
 }

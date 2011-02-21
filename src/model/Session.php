@@ -8,7 +8,7 @@ class Session {
    protected $presenters;
    protected $comments = array();
    
-   public function __construct($title, AbstractUser $presenter) {
+   public function __construct($title, Presenter $presenter) {
       if (!is_string($title) || $title=='') {
          throw new SessionException('Title must be a string and not empty');
       }
@@ -17,7 +17,7 @@ class Session {
       $this->addPresenter($presenter);
    }
    
-   public function addPresenter(AbstractUser $presenter) {
+   public function addPresenter(Presenter $presenter) {
       $this->presenters->attach($presenter);
    }
    
@@ -25,7 +25,7 @@ class Session {
       return $this->presenters;
    }
 
-   public function removePresenter(AbstractUser $presenter) {
+   public function removePresenter(Presenter $presenter) {
       $this->presenters->detach($presenter);
    }
    
