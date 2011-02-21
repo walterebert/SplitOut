@@ -17,6 +17,7 @@ $sebastian = new User('Sebastian');
 $phpUnconf = new Event('PHP Unconf EU');
 
 $phpDays = new Session('PHP Days', new ToBeAnnouncedUser());
+
 $phpDays->addPresenter($arne);
 $phpDays->addPresenter($stefan);
 $phpDays->addPresenter($sebastian);
@@ -27,4 +28,5 @@ $arnesComment = new Comment($arne, $phpDays, 'Awesome but is it secure?');
 
 $phpDays->addComment($arnesComment);
 
-var_dump($phpUnconf);
+var_dump($phpDays->getPresenters());
+

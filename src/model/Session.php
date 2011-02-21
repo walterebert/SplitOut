@@ -13,11 +13,16 @@ class Session {
          throw new SessionException('Title must be a string and not empty');
       }
       $this->title = $title;
+      
       $this->presenters = new \SplObjectStorage();
-      $this->addPresenter($presenter);
+      $this->presenters->attach($presenter);
    }
    
-   public function addPresenter(Presenter $presenter) {
+   public function addPresenter(User $presenter) {   
+      
+      if ($this->hasToBeAnnouncedUser()) {
+         $this->presenters = new \SplObjectStorage();
+      }
       $this->presenters->attach($presenter);
    }
    
@@ -35,6 +40,11 @@ class Session {
    
    public function getComments() {
       return $this->comments;
+   }
+   
+   protected function hasToBeAnnouncedUser() {
+      $this->presenters->rewind();
+      return $this->presenters->current() instanceof ToBeAnnouncedUser;
    }
 }
 
