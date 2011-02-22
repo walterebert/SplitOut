@@ -85,6 +85,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
         $session->addPresenter($user);
     }
 
+    /* annotations left out intentionally */
     public function testAddingPresenterOverwritesToBeAnnouncedUser()
     {
         $userA = $this->getMockBuilder('SplitOut\Model\ToBeAnnouncedUser')
@@ -101,6 +102,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
         $this->assertContains($userB, $session->getPresenters());
     }
 
+    /* annotations left out intentionally */
     protected function setUpSessionWithTwoPresenters()
     {
         $this->userA = $this->getMockBuilder('SplitOut\Model\Presenter')
@@ -114,6 +116,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
         $this->session->addPresenter($this->userB);
     }
 
+    /* annotations left out intentionally */
     protected function setUpSessionWithTwoComments()
     {
         $this->userA = $this->getMockBuilder('SplitOut\Model\Presenter')
