@@ -4,7 +4,7 @@ namespace SplitOut\Framework;
 
 abstract class Controller {
 
-   public function execute(Request $request) {
+   public function execute(Request $request, Response $response) {
    }
 
 }
