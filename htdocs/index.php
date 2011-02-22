@@ -9,15 +9,8 @@ require __DIR__ . '/../src/autoload.php';
 
 $request = new Request(array('username' => 'nobody', 'passwd' => 'secret'));
 $response = new Response();
-$auth = new Authentication();
 
-$loginController = new LoginController($auth);
-$result = $loginController->execute($request, $response);
-
-if ($result) {
-   $view = new \SplitOut\Application\SuccessView();
-} else {
-   $view = new \SplitOut\Application\ErrorView();
-}
+$workflow = new AjaxWorkflow();
+$view = $workflow->execute($request, $response);
 
 echo $view->render($response);
