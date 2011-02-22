@@ -10,6 +10,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
     protected $session;
 
     /**
+     * @covers SplitOut\Model\Session::__construct
      * @covers SplitOut\Model\Session::addPresenter
      * @covers SplitOut\Model\Session::getPresenters
      */
@@ -22,6 +23,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers SplitOut\Model\Session::__construct
      * @covers  SplitOut\Model\Session::removePresenter
      * @depends testAddingPresentersToASessionWorks
      */
