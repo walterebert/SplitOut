@@ -87,16 +87,18 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
 
     public function testAddingPresenterOverwritesToBeAnnouncedUser()
     {
-        $user = $this->getMockBuilder('SplitOut\Model\ToBeAnnouncedUser')
-                     ->getMock();
+        $userA = $this->getMockBuilder('SplitOut\Model\ToBeAnnouncedUser')
+                      ->getMock();
 
-        $presenter = $this->getMockBuilder('SplitOut\Model\Presenter')
-                          ->getMock();
+        $userB = $this->getMockBuilder('SplitOut\Model\User')
+                      ->disableOriginalConstructor()
+                      ->getMock();
 
-        $session = new Session('test', $presenter);
-        $session->addPresenter($user);
+        $session = new Session('test', $userA);
+        $session->addPresenter($userB);
 
-var_dump($session);
+        $this->assertNotContains($userA, $session->getPresenters());
+        $this->assertContains($userB, $session->getPresenters());
     }
 
     protected function setUpSessionWithTwoPresenters()
