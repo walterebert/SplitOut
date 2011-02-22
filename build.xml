@@ -16,6 +16,13 @@
   <mkdir dir="${basedir}/build/pdepend"/>
  </target>
 
+ <!-- Create the autoloader -->
+ <target name="phpab">
+  <exec executable="phpab">
+   <arg line='-o src/autoload.php src' />
+  </exec>
+ </target>
+
  <!-- Run unit tests and generate junit.xml and clover.xml -->
  <target name="phpunit">
   <exec executable="phpunit" failonerror="true"/>
@@ -93,5 +100,5 @@
   </exec>
  </target>
 
- <target name="build" depends="clean,parallelTasks,phpunit,phpcb"/>
+ <target name="build" depends="clean,phpab,parallelTasks,phpunit,phpcb"/>
 </project>
