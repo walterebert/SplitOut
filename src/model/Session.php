@@ -5,7 +5,7 @@ namespace SplitOut\Model;
 class Session {
 
    protected $title;
-   protected $presenters;
+   protected $presenters = array();
    protected $comments = array();
    
    public function __construct($title, Presenter $presenter) {
@@ -13,17 +13,16 @@ class Session {
          throw new SessionException('Title must be a string and not empty');
       }
       $this->title = $title;
-      
-      $this->presenters = new \SplObjectStorage();
-      $this->presenters->attach($presenter);
+      $this->presenters[] = $presenter;
    }
    
    public function addPresenter(User $presenter) {   
       
-      if ($this->hasToBeAnnouncedUser()) {
-         $this->presenters = new \SplObjectStorage();
+      if ($this->presenters[0] instanceOf ToBeAnnouncedUser) {
+         $this->presenters[0] = $presenter;
+      } else {
+         $this->presenters[] = $presenter;
       }
-      $this->presenters->attach($presenter);
    }
    
    public function getPresenters() {
@@ -31,7 +30,13 @@ class Session {
    }
 
    public function removePresenter(Presenter $presenter) {
-      $this->presenters->detach($presenter);
+      foreach (array_keys($this->presenters) as $key) {
+         if ($this->presenters[$key] == $presenter) {
+            unset($this->presenters[$key]);
+            break;
+         }
+      }
+      $this->presenters = array_values($this->presenters);
    }
    
    public function addComment(Comment $comment) {
@@ -40,11 +45,6 @@ class Session {
    
    public function getComments() {
       return $this->comments;
-   }
-   
-   protected function hasToBeAnnouncedUser() {
-      $this->presenters->rewind();
-      return $this->presenters->current() instanceof ToBeAnnouncedUser;
    }
 }
 

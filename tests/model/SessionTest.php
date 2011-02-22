@@ -72,6 +72,32 @@ class SessionTest extends \PHPUnit_Framework_TestCase {
 
         $session = new Session(array(), $user);
     }
+    
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
+    public function testAddingToBeAnnouncedUserGeneratesError()
+    {
+        $user = $this->getMockBuilder('SplitOut\Model\ToBeAnnouncedUser')
+                     ->getMock();
+
+        $session = new Session('test', $user);
+        $session->addPresenter($user);
+    }
+
+    public function testAddingPresenterOverwritesToBeAnnouncedUser()
+    {
+        $user = $this->getMockBuilder('SplitOut\Model\ToBeAnnouncedUser')
+                     ->getMock();
+
+        $presenter = $this->getMockBuilder('SplitOut\Model\Presenter')
+                          ->getMock();
+
+        $session = new Session('test', $presenter);
+        $session->addPresenter($user);
+
+var_dump($session);
+    }
 
     protected function setUpSessionWithTwoPresenters()
     {
