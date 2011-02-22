@@ -12,6 +12,12 @@ $response = new Response();
 $auth = new Authentication();
 
 $loginController = new LoginController($auth);
-$loginController->execute($request, $response);
+$result = $loginController->execute($request, $response);
 
-var_dump($response);
+if ($result) {
+   $view = new \SplitOut\Application\SuccessView();
+} else {
+   $view = new \SplitOut\Application\ErrorView();
+}
+
+echo $view->render($response);

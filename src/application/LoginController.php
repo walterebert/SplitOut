@@ -16,10 +16,9 @@ class LoginController extends Controller {
 
    public function execute(Request $request, Response $response) {
       if ($this->auth->isValid($request->getPost('username'), $request->getPost('passwd'))) {
-         $response->addData('display','Welcome home!');
+         $response->addData('username', $request->getPost('username'));
          return true;
       }
-      $response->addData('display','Please check your credentials');
       return false;
    }
 }

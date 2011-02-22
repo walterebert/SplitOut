@@ -17,14 +17,15 @@ class LoginControllerTest extends \PHPUnit_Framework_TestCase {
    public function setUp() {
       $this->request = new Request($this->post);
       $this->response = $this->getMock('SplitOut\Framework\Response');
-      $this->response->expects($this->at(0))
-                     ->method('addData')
-                     ->with($this->equalTo('display'));
-      
       $this->auth = $this->getMock('SplitOut\Application\Authentication');
    }
 
    public function testLoginWorksForValidCredentials() {
+      $this->response->expects($this->once())
+                     ->method('addData')
+                     ->with($this->equalTo('username'),
+                            $this->equalTo($this->post['username']));
+                     
       $this->auth->expects($this->once())
                  ->method('isValid')
                  ->with($this->equalTo($this->post['username']),

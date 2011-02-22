@@ -9,5 +9,9 @@ class Response {
    public function addData($key, $value) {
       $this->data[$key] = $value;
    }
+   
+   public function getData($key) {
+      return $this->data[$key];
+   }
 
 }
